@@ -1,15 +1,64 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+    public static GameManager instance = null;
+    public GameStates currentGameState { get; private set; } 
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public enum GameStates
+    {
+        Dead,
+        Running,
+        Pause
+        
+    }
+    // Use this for initialization
+    void Awake()
+    {
+        //Singelton
+       if(instance == null)
+        {
+            instance = this;
+        }
+       else if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+   
+    // Update is called once per frame
+    void Update()
+    {
+        switch (currentGameState )
+        {
+            case GameStates.Dead: //State of Death
+                // to do
+                break;
+            case GameStates.Running://State of Running
+                // to do
+                break;
+            case GameStates.Pause:// State of Pause
+                // to do
+                break;
+
+        }
+    }
+    public void Die()// Changes the Gamestate of Dead
+    {
+        if(currentGameState != GameStates.Dead)
+        {
+            currentGameState = GameStates.Dead;
+        }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
+
+
 }
