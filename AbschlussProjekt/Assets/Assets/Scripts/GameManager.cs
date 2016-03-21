@@ -11,13 +11,12 @@ public class GameManager : MonoBehaviour
     {
         Dead,
         Running,
-        Pause
-        
+        Pause      
     }
-    // Use this for initialization
+
     void Awake()
     {
-        //Singelton
+       // Singelton
        if(instance == null)
         {
             instance = this;
@@ -32,21 +31,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (currentGameState )
+        switch (currentGameState)
         {
-            case GameStates.Dead: //State of Death
+            case GameStates.Dead: // State of Death
                 // to do
-                break;
-            case GameStates.Running://State of Running
+            break;
+
+            case GameStates.Running: // State of Running
                 // to do
-                break;
-            case GameStates.Pause:// State of Pause
+            break;
+
+            case GameStates.Pause: // State of Pause
                 // to do
-                break;
+            break;
 
         }
     }
-    public void Die()// Changes the Gamestate of Dead
+
+    public void Die() // Changes the Gamestate to Dead
     {
         if(currentGameState != GameStates.Dead)
         {
@@ -54,11 +56,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Restart()
+    public void Restart() // Reloading of current Scene
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    
-
+   
 
 }
