@@ -1,4 +1,4 @@
 sceneSetups:
-- path: "Assets/Pref\xE4bs/Szene1.unity"
+- path: Assets/Prefabs/Szene1.unity
   isLoaded: 1
   isActive: 1
