@@ -73,6 +73,6 @@ public class CharMover : MonoBehaviour
         input = Input.GetAxis("Mouse Y");
         input *= RotationSpeed * Time.deltaTime;
 
-        Head.Rotate(Vector3.back, input);
+        Head.Rotate(Vector3.left, input);
     }
 }
