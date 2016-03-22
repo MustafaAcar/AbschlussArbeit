@@ -6,10 +6,12 @@ public class CharMover : MonoBehaviour
     public float MovementSpeed = 5.0f;
     public float RotationSpeed = 200.0f;
     public float JumpStrength = 5.0f;
+    public float SprintSpeed = 15.0f;
     public Transform Head;
 
     private CharacterController charContr;
     private float m_ySpeed = 0.0f;
+    private float m_movementSpeed;
 
     void Awake()
     {
@@ -26,11 +28,21 @@ public class CharMover : MonoBehaviour
     {
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         move = move.normalized;
-        move *= Time.deltaTime * MovementSpeed;
+
+        if (Input.GetKey(KeyCode.LeftControl)) // Sprintfeature
+        {
+            m_movementSpeed = SprintSpeed;
+        }
+        else
+        {
+            m_movementSpeed = MovementSpeed;
+        }
+
+        move *= Time.deltaTime * m_movementSpeed;
         move = transform.TransformDirection(move);
 
 
-        if (charContr.isGrounded)
+        if (charContr.isGrounded) // Jumpfeature
         {
             if (Input.GetButtonDown("Jump"))
             {
@@ -51,7 +63,7 @@ public class CharMover : MonoBehaviour
         charContr.Move(move);
     }
 
-    private void Rotation()
+    private void Rotation() // Looking around
     {
         float input = Input.GetAxis("Mouse X");
         input *= RotationSpeed * Time.deltaTime;
